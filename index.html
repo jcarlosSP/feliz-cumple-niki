@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz cumpleaños cheketa :V</title>
+  <style>
+    body {
+      background: #0d0d1a;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      color: white;
+      padding: 50px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .box {
+      width: 360px;
+      height: 220px;
+      padding: 20px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid transparent;
+      color: white;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .neon-blue {
+      box-shadow: 0 0 10px cyan, 0 0 20px cyan;
+      border-color: cyan;
+      line-height: 55px;
+      overflow: hidden;
+    }
+
+    .neon-pink {
+      box-shadow: 0 0 10px magenta, 0 0 20px magenta;
+      border-color: magenta;
+      line-height: 30px;
+      overflow: hidden;
+    }
+
+    #heart {
+      font-size: 40px;
+      animation: pulse 1s infinite;
+      display: none;
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    #startBtn {
+      background: #ff00ff;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 15px magenta;
+      margin-bottom: 30px;
+    }
+
+    #box2-text {
+      margin-top: 10px;
+    }    .collage-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      margin-top: 40px;
+      position: relative;
+    }
+    .collage-row {
+      display: flex;
+      justify-content: center;
+    }
+    .collage-img {
+      width: 160px;
+      height: auto;
+      border: 8px solid white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: scale(0.6);
+      transition: all 1s ease;
+      object-fit: cover;
+    }
+
+    .rot-1 { transform: rotate(8deg) scale(1.15) !important;position: relative;z-index: 9; }
+    .rot-2 { transform: rotate(0deg) scale(1.2) !important;width: 287px;height: 185px;margin-top: 24px;}
+    .rot-3 { transform: rotate(-10deg) scale(1.15) !important; }
+    .rot-4 { transform: rotate(0deg) scale(1.15) !important;width: 250px;height: 180px;margin-top: -21px; }
+    .rot-5 { transform: rotate(0deg) scale(1.15) !important;margin-top: -19px;height: 128px;z-index: -1; }
+    .rot-6 { transform: rotate(0deg) scale(1.15) !important;margin-top: -15px;width: 220px;z-index: -1;margin-left: 24px; }
+
+    .final-heart {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: fadeInCenter 1s ease forwards;
+    }
+
+    .heart-shape {
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle at 30% 30%, #ff5ca8, #ff0066);
+      border-radius: 50% 50% 0 0;
+      position: relative;
+      transform: rotate(-45deg);
+      overflow: hidden;
+    }
+
+    .heart-shape::before,
+    .heart-shape::after {
+      content: '';
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle at 30% 30%, #ff5ca8, #ff0066);
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart-shape::before {
+      top: -75px;
+      left: 0;
+    }
+
+    .heart-shape::after {
+      left: 75px;
+      top: 0;
+    }
+
+    .heart-img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: circle(60% at 50% 50%);
+    }
+
+    @keyframes fadeInCenter {
+      from { opacity: 0; transform: scale(0.6) translate(-50%, -50%); }
+      to { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+    }
+  </style>
+</head>
+<body>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="mp3/niki.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <div class="box neon-blue" id="box1"></div>
+  <div class="box neon-pink" id="box2">
+    <div id="heart">❤️</div>
+    <div id="box2-text"></div>
+  </div>
+</div>
+
+<button id="startBtn">FELIZ CUMPLEAÑOS 🎂</button>
+<div id="collageGrid" class="collage-grid">
+  <div class="collage-row">
+    <img src="img/n1.jpg" class="collage-img rot-1" />
+    <img src="img/n2.jpg" class="collage-img rot-2" />
+    <img src="img/n3.jpg" class="collage-img rot-3" />
+  </div>
+  <div class="collage-row">
+    <img src="img/n4.jpg" class="collage-img rot-4" />
+    <img src="img/n6.jpg" class="collage-img rot-5" />
+    <img src="img/n5.jpg" class="collage-img rot-6" />
+  </div>
+</div>
+
+<script>
+  const box1 = document.getElementById("box1");
+  const heart = document.getElementById("heart");
+  const box2Text = document.getElementById("box2-text");
+  const startBtn = document.getElementById("startBtn");
+  const bgMusic = document.getElementById("bgMusic");
+
+  const text1 = "Hoy no es un día cualquiera... ¡Es tu cumpleaños! 🎉 Quiero que sepas lo agradecido que estoy por tenerte en mi vida.";
+  const text2 = "Gracias por tu amistad, tus sonrisas, tus locuras y por ser simplemente tú. Te deseo un año lleno de amor, aventuras y felicidad. ¡Feliz cumpleaños! 🎂💖 TALENTO O ELEMENTO";
+
+  let isTyping = false;
+
+  function typeText(element, text, callback) {
+    let i = 0;
+    element.innerHTML = "";
+
+    function type() {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        const delay = Math.floor(Math.random() * 50) + 80;
+        setTimeout(type, delay);
+      } else if (callback) {
+        callback();
+      }
+    }
+
+    type();
+  }
+
+  function showImagesSequentially() {
+    const images = document.querySelectorAll(".collage-img");
+
+    images.forEach((img, index) => {
+      setTimeout(() => {
+        img.style.opacity = 1;
+        img.style.transform = img.classList[1].replace("rot-", "rotate(") + "deg) scale(1)";
+      }, index * 800);
+    });
+
+    setTimeout(() => {
+      heart.style.display = "block";
+      isTyping = false; 
+      startBtn.innerText = "INICIAR DE NUEVO 🔁";
+    }, images.length * 800 + 1000);
+  }
+
+  startBtn.addEventListener("click", () => {
+    if (isTyping) return; 
+    isTyping = true;
+
+    if (bgMusic) {
+      bgMusic.volume = 0.5;
+      bgMusic.play().catch(err => {
+        console.warn("Autoplay bloqueado hasta interacción del usuario", err);
+      });
+    }
+    box1.innerHTML = "";
+    box2Text.innerHTML = "";
+    heart.style.display = "none";
+    startBtn.innerText = "FELIZ CUMPLEAÑOS 🎂";
+
+    document.querySelectorAll(".collage-img").forEach(img => {
+      img.style.opacity = 0;
+      img.style.transform = "scale(0.6)";
+    });
+
+    typeText(box1, text1, () => {
+      heart.style.display = "block";
+      typeText(box2Text, text2, () => {
+        showImagesSequentially();
+      });
+    });
+  });
+</script>
+</body>
+</html>
